@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "baseUrl": ".",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "const/*": ["src/framework/const/*"],
+      "router/*": ["src/framework/router/*"],
+      "store/*": ["src/framework/store/*"],
+      "interface/*": ["src/framework/interface/*"],
+      "api/*": ["src/framework/api/*"],
+      "utils/*": ["src/framework/utils/*"],
+      "enums/*": ["src/framework/enums/*"],
+      "styles/*": ["src/framework/styles/*"],
+      "hooks/*": ["src/hooks/*"],
+      "module/*": ["src/module/*"]
+    },
+    // vite 会读取到这个 tsconfig 文件(位于工作空间根目录)，按照其推荐配置这两个选项
+    // https://cn.vitejs.dev/guide/features.html#typescript-compiler-options
+    "isolatedModules": true,
+    "useDefineForClassFields": true
+  },
+
+  "include": ["uno.config.ts", "src/**/*", "src/types/*.d.ts"]
+}
