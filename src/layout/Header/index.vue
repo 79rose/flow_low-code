@@ -1,25 +1,63 @@
 <template>
-  <div class="flex items-center">
-    <div class="mr-auto"></div>
-    <el-switch v-model="isDark" @click.passive="toggle">
+  <header class="flex items-center gap-2">
+    <div class="mr-auto text-sm flex items-center gap-2">
+      <h2>
+        {{ $t('flow.header.title') }}
+      </h2>
+      <p>
+        {{ $t('flow.header.description') }}
+      </p>
+    </div>
+    <el-dropdown @command="handleCommand" size="small">
+      <el-button type="text" size="small">
+        {{ curLang }}
+      </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item v-for=" item in langList" :command="item.command" :key="item.text">
+            {{ item.text }}
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+    <el-switch v-model="isDark" @click.passive="toggle" size="small">
       <template #active-action>
-        <MoonNight />
+        <Moon />
       </template>
       <template #inactive-action>
         <Sunny />
       </template>
     </el-switch>
-  </div>
+  </header>
 </template>
 
 <script setup lang="ts">
   import { computed } from 'vue';
   import { useTheme } from 'hooks/useTheme';
+  import { useLang } from 'hooks/useLang'
+  import { LANG, THEME } from 'const/app'
   import { isReducedMotion } from 'utils/theme';
-
+  const { t } = useI18n()
   const { theme, toggleTheme } = useTheme();
-  const isDark = computed(() => theme.value === 'dark');
+  const { changeLang, lang } = useLang()
+  const isDark = computed(() => theme.value === THEME.DARK);
+  const curLang = computed(() => {
+    return lang.value === LANG.CHINESE ? t('common.lang.chinese') : t('common.lang.english')
+  })
 
+  const langList = [
+    {
+      command: 'zh',
+      text: t('common.lang.chinese')
+    },
+    {
+      command: 'en',
+      text: t('common.lang.english')
+    },
+  ]
+  const handleCommand = (command: string) => {
+    changeLang(command)
+  };
   const toggle = (event?: MouseEvent) => {
     const willDark = !isDark.value;
     // 浏览器新特性不支持 或者 开启了动画减弱

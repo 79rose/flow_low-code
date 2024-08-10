@@ -24,7 +24,6 @@
       "interface/*": ["src/framework/interface/*"],
       "api/*": ["src/framework/api/*"],
       "utils/*": ["src/framework/utils/*"],
-      "enums/*": ["src/framework/enums/*"],
       "styles/*": ["src/framework/styles/*"],
       "hooks/*": ["src/hooks/*"],
       "module/*": ["src/module/*"]

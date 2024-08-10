@@ -17,7 +17,6 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         store: resolve(__dirname, 'src/framework/store'),
         interface: resolve(__dirname, 'src/framework/interface'),
         utils: resolve(__dirname, 'src/framework/utils'),
-        enums: resolve(__dirname, 'src/framework/enums'),
         styles: resolve(__dirname, 'src/framework/styles'),
         module: resolve(__dirname, 'src/module'),
         hooks: resolve(__dirname, 'src/hooks'),
