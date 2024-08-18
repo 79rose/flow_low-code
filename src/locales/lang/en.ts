@@ -2,16 +2,32 @@ const enLang = {
   common: {
     submit: 'Submit',
     cancel: 'Cancel',
+    nodeSetting: 'Node Setting',
+    baseSetting: 'Base Setting',
     lang: {
       chinese: '中文',
       english: 'english',
     },
   },
   flow: {
+    start: {
+      defaultPeople: 'Initiator',
+    },
     header: {
       title: 'Flow Low Code',
       description: 'Welcome to the Flow Low Code platform.',
     },
+    tool: {
+      zoomIn: 'Zoom In',
+      zoomOut: 'Zoom Out',
+    },
+  },
+  form: {
+    field: 'Field',
+    required: 'Required',
+    hidden: 'Hidden',
+    readonly: 'Readonly',
+    permissions: 'Form Permissions',
   },
 };
 

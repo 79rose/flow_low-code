@@ -1,5 +1,5 @@
 <template>
-  <header class="flex items-center gap-2">
+  <header class="flex items-center gap-2 px-4">
     <div class="mr-auto text-sm flex items-center gap-2">
       <h2>
         {{ $t('flow.header.title') }}

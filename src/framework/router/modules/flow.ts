@@ -8,7 +8,7 @@ const flow: RouteRecordRaw[] = [
     redirect: '/flow/index',
     children: [
       {
-        component: () => import('module/mod-flow'),
+        component: () => import('module/mod-demo/index.vue'),
         path: 'index',
         name: 'flow-index',
       },
