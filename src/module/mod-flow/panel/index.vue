@@ -1,16 +1,40 @@
-<template>
-    <div>
-        <!-- panel list currentPanel.includes('flow') -->
-    </div>
-</template>
-
 <script setup lang="ts">
-    import { usePanel } from 'hooks/usePanel'
-    const { currentPanel } = usePanel()
+    import { ClickOutside as vClickOutside } from 'element-plus'
+    import Start from './StartPanel.vue'
+    import type { FlowNode } from '../node/type'
 
-    const isShow = (name: string) => {
-        return currentPanel.includes(name) !== -1
+    defineProps<{
+        activeData: FlowNode
+    }>()
+    const penalVisible = defineModel<boolean>({ required: true })
+    const panels: Recordable<Component> = {
+        start: Start,
+    }
+    const showInput = ref(false)
+    const onClickOutside = () => {
+        if (showInput.value) {
+            showInput.value = false
+        }
     }
 </script>
 
-<style scoped></style>
+<template>
+    <el-drawer v-model="penalVisible" size="35%">
+        <template #header="{ titleId, titleClass }">
+            <span :id="titleId" :class="titleClass">
+                <el-input v-click-outside="onClickOutside" @blur="onClickOutside" maxlength="30"
+                    v-model="activeData.name" v-show="showInput"></el-input>
+                <el-link icon="EditPen" v-show="!showInput" @click="showInput = true">
+                    {{ activeData?.name || $t('form.nodeSetting') }}
+                </el-link>
+            </span>
+        </template>
+        <component :is="panels[activeData.type]" :activeData="activeData" />
+    </el-drawer>
+</template>
+
+<style scoped lang="scss">
+    :deep(.el-tabs__content) {
+        margin-top: 10px;
+    }
+</style>

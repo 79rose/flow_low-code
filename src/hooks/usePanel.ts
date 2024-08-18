@@ -1,4 +1,4 @@
-import { usePanelStore } from 'store/panel';
+import { usePanelStore } from 'store/modules/panel';
 
 export const usePanel = () => {
   const panelStore = usePanelStore();
