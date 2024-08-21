@@ -20,7 +20,9 @@
         </el-dropdown-menu>
       </template>
     </el-dropdown>
-    <el-switch v-model="isDark" @click.passive="toggle" size="small">
+    <el-switch v-model="readOnly" @click="toggleModel" inline-prompt :active-text="$t('common.editableModel')"
+      :inactive-text="$t('common.readonlyModel')" />
+    <el-switch v-model="isDark" @click.passive="toggle">
       <template #active-action>
         <Moon />
       </template>
@@ -35,16 +37,21 @@
   import { computed } from 'vue';
   import { useTheme } from 'hooks/useTheme';
   import { useLang } from 'hooks/useLang'
+  import { useModel } from 'hooks/useModel';
   import { LANG, THEME } from 'const/app'
   import { isReducedMotion } from 'utils/theme';
   const { t } = useI18n()
   const { theme, toggleTheme } = useTheme();
   const { changeLang, lang } = useLang()
+
+  const { readOnly, setReadOnly } = useModel();
   const isDark = computed(() => theme.value === THEME.DARK);
   const curLang = computed(() => {
     return lang.value === LANG.CHINESE ? t('common.lang.chinese') : t('common.lang.english')
   })
-
+  const toggleModel = () => {
+    setReadOnly(!readOnly.value)
+  }
   const langList = [
     {
       command: 'zh',
