@@ -4,6 +4,8 @@ const enLang = {
     cancel: 'Cancel',
     nodeSetting: 'Node Setting',
     baseSetting: 'Base Setting',
+    readonlyModel: 'Readonly Model',
+    editableModel: 'Editable Model',
     lang: {
       chinese: '中文',
       english: 'english',
@@ -11,7 +13,7 @@ const enLang = {
   },
   flow: {
     start: {
-      defaultPeople: 'Initiator',
+      default: 'Initiator',
     },
     header: {
       title: 'Flow Low Code',

@@ -2,6 +2,8 @@ const zhLang = {
   common: {
     submit: '提交',
     cancel: '取消',
+    readonlyModel: '只读模式',
+    editableModel: '编辑模式',
     nodeSetting: '节点设置',
     baseSetting: '基础设置',
     lang: {

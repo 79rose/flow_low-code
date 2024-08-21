@@ -1,11 +1,18 @@
 <script setup lang="ts">
     import type { ErrorInfo, FlowNode, NodeType } from './type'
     import { ClickOutside as vClickOutside, type InputInstance } from 'element-plus'
-    import { List } from '@element-plus/icons-vue'
+    import {
+        List, Timer, BellFilled, Share, Promotion, Stamp
+    } from '@element-plus/icons-vue'
     import Add from './Add.vue'
 
     const dynamicIcon = {
-        List
+        List,
+        Timer,
+        BellFilled,
+        Share,
+        Promotion,
+        Stamp
     } as Record<string, Component>
     const _inject = inject<{
         readOnly?: Ref<boolean>
