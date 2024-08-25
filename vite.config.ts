@@ -23,20 +23,34 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       },
     },
     server: {
-      host: true,
-      port: 8001,
-      // proxy: createProxy(VITE_PROXY),
+      host: '0.0.0.0',
+      port: 3200,
+      open: true,
       proxy: {
         '/api': {
-          target: 'http://localhost:3000',
+          target: 'http://localhost:8084',
           changeOrigin: true,
-          rewrite: (path: string) => path.replace(/^\/api/, ''),
+          ws: true,
+          rewrite: path => path.replace(/^\/api/, ''),
+          secure: false,
         },
       },
-      watch: {
-        usePolling: true,
-      },
     },
+    // server: {
+    //   host: true,
+    //   port: 8001,
+    //   // proxy: createProxy(VITE_PROXY),
+    //   proxy: {
+    //     '/api': {
+    //       target: 'http://localhost:3000',
+    //       changeOrigin: true,
+    //       rewrite: (path: string) => path.replace(/^\/api/, ''),
+    //     },
+    //   },
+    //   watch: {
+    //     usePolling: true,
+    //   },
+    // },
     build: {
       modulePreload: false,
       outDir: 'dist',
