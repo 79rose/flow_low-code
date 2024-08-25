@@ -30,14 +30,7 @@
       </el-button>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item>
-            <el-upload class="flex items-center">
-              {{
-                $t('common.useFileStart')
-              }}
-            </el-upload>
-          </el-dropdown-item>
-          <el-dropdown-item>
+          <el-dropdown-item @click="handleExprotJson">
             {{ $t('common.export') }}
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -63,6 +56,10 @@
   import { useModel } from 'hooks/useModel';
   import { LANG, THEME } from 'const/app'
   import { isReducedMotion } from 'utils/theme';
+
+  import { useDataStore } from 'store/modules/data'
+
+  const { fields, process } = useDataStore();
   const { t } = useI18n()
   const { theme, toggleTheme } = useTheme();
   const { changeLang, lang } = useLang()
@@ -74,6 +71,19 @@
   })
   const toggleModel = () => {
     setReadOnly(!readOnly.value)
+  }
+  const handleExprotJson = () => {
+    const data = {
+      fields,
+      process
+    }
+    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'flow.json';
+    a.click();
+    URL.revokeObjectURL(url);
   }
   const langList = [
     {
