@@ -56,7 +56,6 @@ declare module 'vue' {
     ElText: typeof import('element-plus/es')['ElText']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElTree: typeof import('element-plus/es')['ElTree']
-    ElUpload: typeof import('element-plus/es')['ElUpload']
     EndNode: typeof import('./../module/mod-flow/node/EndNode.vue')['default']
     ExclusiveNode: typeof import('./../module/mod-flow/node/ExclusiveNode.vue')['default']
     GatewayNode: typeof import('./../module/mod-flow/node/GatewayNode.vue')['default']
