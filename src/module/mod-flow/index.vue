@@ -1,7 +1,6 @@
 <template>
     <div class="designer-container cursor-default active:cursor-grabbing" ref="designerContainerRef"
         :class="{ 'cursor-grabbing': !cursorDefault }">
-        >
         <div class="zoom">
             <el-tooltip :content="$t('flow.tool.zoomIn')" placement="bottom-start">
                 <el-button icon="plus" @click="zoom += 10" :disabled="zoom >= 170" circle></el-button>
@@ -24,9 +23,9 @@
     import TreeNode from './node/TreeNode.vue';
     import { useDraggableScroll } from 'hooks/useDraggableScroll'
     import { useWheelMounted } from 'hooks/useWheelMounted'
-
     import type { ApprovalNode, BranchNode, CcNode, ConditionNode, ErrorInfo, ExclusiveNode, Field, FilterRules, FlowNode, NodeType, NotifyNode, TimerNode } from './node/type';
     import { NODETYPE } from 'const/node';
+
     const props = withDefaults(
         defineProps<{
             process: FlowNode

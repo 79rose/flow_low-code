@@ -1,7 +1,5 @@
 <script setup lang="ts">
     import type { ConditionNode, ErrorInfo } from './type'
-    import Node from './Node.vue'
-
     const props = defineProps<{
         node: ConditionNode
     }>()

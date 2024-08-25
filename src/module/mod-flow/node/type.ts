@@ -148,9 +148,9 @@ export interface OperationPermissions {
   // 委派
   delegate: boolean;
   // 加签
-  addMulti: boolean;
+  addMulti?: boolean;
   // 减签
-  minusMulti: boolean;
+  minusMulti?: boolean;
 }
 
 export interface ApprovalNode extends AssigneeNode {

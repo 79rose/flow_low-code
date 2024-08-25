@@ -1,14 +1,23 @@
 <script setup lang="ts">
     import { ClickOutside as vClickOutside } from 'element-plus'
     import Start from './StartPanel.vue'
+    import Approval from './ApprovalPanel.vue'
     import type { FlowNode } from '../node/type'
-
+    import CcPanel from './CcPanel.vue';
+    import Timer from './TimerPanel.vue'
+    import Notify from './NotifyPanel.vue'
+    import Condition from './ConditionPanel.vue'
     defineProps<{
         activeData: FlowNode
     }>()
     const penalVisible = defineModel<boolean>({ required: true })
     const panels: Recordable<Component> = {
         start: Start,
+        approval: Approval,
+        cc: CcPanel,
+        timer: Timer,
+        notify: Notify,
+        condition: Condition
     }
     const showInput = ref(false)
     const onClickOutside = () => {

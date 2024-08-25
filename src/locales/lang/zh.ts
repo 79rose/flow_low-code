@@ -2,6 +2,9 @@ const zhLang = {
   common: {
     submit: '提交',
     cancel: '取消',
+    useFileStart: '选择文件预览|编辑',
+    export: '导出',
+    fileOperation: '文件操作',
     readonlyModel: '只读模式',
     editableModel: '编辑模式',
     nodeSetting: '节点设置',

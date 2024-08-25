@@ -8,6 +8,7 @@
         {{ $t('flow.header.description') }}
       </p>
     </div>
+
     <el-dropdown @command="handleCommand" size="small">
       <el-button type="text" size="small">
         {{ curLang }}
@@ -16,6 +17,28 @@
         <el-dropdown-menu>
           <el-dropdown-item v-for=" item in langList" :command="item.command" :key="item.text">
             {{ item.text }}
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+    <el-dropdown>
+      <el-button size="small" type="text" plain>
+        {{ $t('common.fileOperation') }}
+        <el-icon class="el-icon--right">
+          <ArrowDown />
+        </el-icon>
+      </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>
+            <el-upload class="flex items-center">
+              {{
+                $t('common.useFileStart')
+              }}
+            </el-upload>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            {{ $t('common.export') }}
           </el-dropdown-item>
         </el-dropdown-menu>
       </template>

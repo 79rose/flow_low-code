@@ -1,5 +1,7 @@
 <script setup lang="ts">
-    import type { FormProperty, StartNode } from '../node/type'
+    import type { FormProperty, StartNode, Field } from '../node/type'
+
+    const { fields } = inject<{ fields: Ref<Field[]> }>('flowDesign', { fields: ref([]) })
     const props = defineProps<{
         activeData: StartNode
     }>()
@@ -60,23 +62,37 @@
         }
     }
 
+    watchEffect(() => {
+        const formProperties = props.activeData.formProperties
+        props.activeData.formProperties = fields.value.map((field) => ({
+            id: field.id,
+            name: field.label,
+            readonly: field.readonly || false,
+            hidden: field.hidden,
+            required: field.required || false
+        }))
+        props.activeData.formProperties.forEach((item) => {
+            const properties = formProperties.find((f) => f.id === item.id)
+            if (properties) {
+                item.readonly = properties.readonly
+                item.hidden = properties.hidden
+                item.required = properties.required
+            }
+        })
+    })
 </script>
 
 <template>
     <el-tabs v-model="activeName" stretch class="el-segmented">
-        <el-tab-pane :label="$t('common.baseSetting')" name="basicSettings">
-            <el-form label-position="top" label-width="90px">
-                <el-form-item prop="executionListeners" label="执行监听器">
-                    <!-- <ExecutionListeners :node="activeData" /> -->
-                </el-form-item>
-            </el-form>
+        <el-tab-pane label="基础设置" name="basicSettings">
+            暂无
         </el-tab-pane>
-        <el-tab-pane :label="$t('form.permissions')" name="formPermissions">
+        <el-tab-pane label="表单权限" name="formPermissions">
             <el-table :data="activeData.formProperties">
-                <el-table-column prop="name" :label="$t('form.field')" />
+                <el-table-column prop="name" label="字段" />
                 <el-table-column prop="readonly">
                     <template #header>
-                        <el-checkbox v-model="allReadonly" :label="$t('form.readonly')" />
+                        <el-checkbox v-model="allReadonly" label="只读" />
                     </template>
                     <template #default="{ row }">
                         <el-checkbox v-model="row.readonly" @change="changeReadonly(row)" />
@@ -84,7 +100,7 @@
                 </el-table-column>
                 <el-table-column prop="required">
                     <template #header>
-                        <el-checkbox v-model="allRequired" :label="$t('form.required')" />
+                        <el-checkbox v-model="allRequired" label="必填" />
                     </template>
                     <template #default="{ row }">
                         <el-checkbox v-model="row.required" @change="changeRequired(row)" />
@@ -92,7 +108,7 @@
                 </el-table-column>
                 <el-table-column prop="hidden">
                     <template #header>
-                        <el-checkbox v-model="allHidden" :label="$t('form.hidden')" />
+                        <el-checkbox v-model="allHidden" label="隐藏" />
                     </template>
                     <template #default="{ row }">
                         <el-checkbox v-model="row.hidden" @change="changeHidden(row)" />
@@ -103,6 +119,6 @@
     </el-tabs>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
     @import 'styles/el-segmented.scss';
 </style>

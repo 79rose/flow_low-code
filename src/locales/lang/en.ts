@@ -2,6 +2,9 @@ const enLang = {
   common: {
     submit: 'Submit',
     cancel: 'Cancel',
+    useFileStart: 'Select File Preview | Edit',
+    export: 'Export',
+    fileOperation: 'File Operation',
     nodeSetting: 'Node Setting',
     baseSetting: 'Base Setting',
     readonlyModel: 'Readonly Model',
